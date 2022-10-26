@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>video bg, dynamic transcript </title>
+
+    <style>
+        
+        /* http://meyerweb.com/eric/tools/css/reset/ 
+        v2.0 | 20110126
+        License: none (public domain)
+        */
+
+        html, body, div, span, applet, object, iframe,
+        h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+        a, abbr, acronym, address, big, cite, code,
+        del, dfn, em, img, ins, kbd, q, s, samp,
+        small, strike, strong, sub, sup, tt, var,
+        b, u, i, center,
+        dl, dt, dd, ol, ul, li,
+        fieldset, form, label, legend,
+        table, caption, tbody, tfoot, thead, tr, th, td,
+        article, aside, canvas, details, embed, 
+        figure, figcaption, footer, header, hgroup, 
+        menu, nav, output, ruby, section, summary,
+        time, mark, audio, video {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+        /* HTML5 display-role reset for older browsers */
+        article, aside, details, figcaption, figure, 
+        footer, header, hgroup, menu, nav, section {
+            display: block;
+        }
+        body {
+            line-height: 1;
+        }
+        ol, ul {
+            list-style: none;
+        }
+        blockquote, q {
+            quotes: none;
+        }
+        blockquote:before, blockquote:after,
+        q:before, q:after {
+            content: '';
+            content: none;
+        }
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        /* custom */
+
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+            line-height: 1.1;
+            font-weight: 700;
+            letter-spacing: -1px;
+            /* text-align: center; */
+        }
+
+        h1{
+            text-align: center;
+        }
+
+        h2{
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 17px;
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        /* audio{
+            display: block;
+            margin: auto;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        } */
+
+        .kyle {
+            text-align: end;
+        }
+
+        p{
+            font-weight:200;
+        }
+
+        header#msg,
+        aside#msg-l,
+        aside#msg-r,
+        footer#msg2{
+        /* position: absolute; */
+        overflow: scroll;
+        z-index: 1; 
+        mix-blend-mode: difference;
+        color: whitesmoke;
+        }
+
+        header#msg{
+            grid-area: transt;
+        }
+
+        aside#msg-l{
+            grid-area: transl;
+        }
+
+        aside#msg-r{
+            grid-area: transr;
+        }
+
+        footer#msg2{
+            grid-area: transb;
+        }
+
+        main.conversation{
+            /* position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); */
+            grid-area: memos;
+            overflow: scroll;
+            height: 510px;
+            max-width: 500px;
+            z-index: 1;
+            color: whitesmoke;
+            margin: 10px;
+        }
+
+        main.conversation::-webkit-scrollbar,
+        header#msg::-webkit-scrollbar,
+        aside#msg-l::-webkit-scrollbar,
+        aside#msg-r::-webkit-scrollbar,
+        footer#msg2::-webkit-scrollbar{
+            display: none;
+        }
+
+        .kyle, .darnell {
+            margin-bottom: 10px;
+        }
+
+        #myVideo {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%;
+            min-height: 100%;
+        }
+
+        section.wrapper{
+            display: grid;
+            /* gap: 10px; */
+            margin: 10px;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 250px 510px 250px;
+            grid-template-areas: 
+            "transt transt transt"
+            "transl memos transr"
+            "transb transb transb"
+            ;
+        }
+
+    </style>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+
+<section class="wrapper">
+
+    <header id="msg"></header>
+    <aside id="msg-l"></aside>
+    <aside id="msg-r"></aside>
+
+
+    <main class="conversation">
+
+        <div class="intro">
+            <h1>METHOD ACTING with <br> DARNELL HENDERSON</h1>
+            <p>In between cigarette breaks, grocery store runs, and mornings at home, we talk about inhabiting characters, the meaning of objects in situ, relational aesthetics, and the boundaries of desire in making work and living life.</p> 
+        </div>
+
+        <div class="kyle">
+            <h2>Kyle</h2> 
+            <audio controls id="k1">
+                <source src="assets/mp3/Audio Message K1.mp3" type="audio/mpeg">
+                Your browser does not support the audio tag.
+            </audio>
+            <p>Kept at 4:57pm</p>                
+        </div>
+
+        <div class="darnell">
+            <h2>Darnell</h2> 
+            <audio controls id="d1">
+                <source src="assets/mp3/Audio Message D1.mp3" type="audio/mpeg">
+            </audio>
+            <p>Kept at 5:17pm</p> 
+        </div>
+
+        <div class="kyle">
+            <h2>Kyle</h2>
+            <audio controls id="k2">
+                <source src="assets/mp3/Audio Message K2.mp3" type="audio/mpeg">
+            </audio>
+             <p>Kept at 5:32pm</p> 
+        </div>
+
+        <div class="darnell">
+            <h2>Darnell</h2>
+            <audio controls id="d2">
+                <source src="assets/mp3/Audio Message D2-1.mp3" type="audio/mpeg">
+              </audio>
+            <audio controls id="d2a">
+                <source src="assets/mp3/Audio Message D2-2.mp3" type="audio/mpeg">
+            </audio>
+            <p>Kept at 5:55pm</p> 
+        </div>
+
+        <div class="kyle">
+            <h2>Kyle</h2>
+            <audio controls id="k3">
+              <source src="assets/mp3/Audio Message K3-1.mp3" type="audio/mpeg">
+              </audio>
+            
+            <audio controls id="k3a">
+              <source src="assets/mp3/Audio Message K3-2.mp3" type="audio/mpeg">
+            </audio>
+
+            <audio controls id="k3b">
+            <source src="assets/mp3/Audio Message K3-3.mp3" type="audio/mpeg">
+            </audio>
+            
+            <audio controls id="k3c">
+            <source src="assets/mp3/Audio Message K3-4.mp3" type="audio/mpeg">
+            </audio>
+
+            <audio controls id="k3d">
+            <source src="assets/mp3/Audio Message K3-5.mp3" type="audio/mpeg">
+            </audio>
+
+            <audio controls id="k3e">
+                <source src="assets/mp3/Audio Message K3-6.mp3" type="audio/mpeg">
+            </audio>
+                <p>Kept at 6:35pm</p> 
+        </div>
+
+        <div class="darnell">
+            <h2>Darnell</h2>
+            <audio controls id="d3">
+              <source src="assets/mp3/Audio Message D3-1.mp3" type="audio/mpeg">
+              </audio>
+              <audio controls id="d3a">
+                <source src="assets/mp3/Audio Message D3-2.mp3" type="audio/mpeg">
+            </audio>
+                <p>Kept at 7:15pm</p> 
+
+        </div>
+
+        <div class="kyle">
+        <h2>Kyle</h2>
+        <audio controls id="k4">
+          <source src="assets/mp3/Audio Message K4-1.mp3" type="audio/mpeg">
+        </audio>
+        <audio controls id="k4a">
+            <source src="assets/mp3/Audio Message K4-2.mp3" type="audio/mpeg">
+            </audio>
+        <audio controls id="k4b">
+                <source src="assets/mp3/Audio Message K4-3.mp3" type="audio/mpeg">
+        </audio>
+        <p>Kept at 8:02pm</p>
+
+        </div>
+        <div class="darnell">
+        <h2> Darnell </h2>
+        <audio controls id="d4">
+          <source src="assets/mp3/Audio Message D4.mp3" type="audio/mpeg">
+          </audio>
+            <p>Kept at 9:20pm</p>
+
+        </div>
+    </main>
+    <footer id="msg2"></footer>
+
+</section>
+
+    <video autoplay muted loop id="myVideo">
+        <source src="assets/mp4/IMG_5905.mp4" type="video/mp4">
+      </video>
+    
+      <script src="vid-trans.js"></script>
+</body>
+</html>
